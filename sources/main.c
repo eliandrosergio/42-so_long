@@ -28,6 +28,12 @@ static int	argv_checker(char *argv)
 	return (0);
 }
 
+void	ft_erro_msg(char *str)
+{
+	ft_printf_colored("\033[0;31m", "Erro!\n");
+	ft_printf(str);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -45,13 +51,13 @@ int	main(int argc, char **argv)
 		{
 			if (game.map)
 				free_map(game.map);
-			ft_printf("Erro!\nMapa inválido.\n");
+			ft_erro_msg("Mapa Inválido.\n");
 			exit(1);
 		}
 	}
 	else
 	{
-		ft_printf("Error!\nArgumentos Inválidos.\n");
+		ft_erro_msg("Argumentos Inválidos.\n");
 		exit(1);
 	}
 	return (0);

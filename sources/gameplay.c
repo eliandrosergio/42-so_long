@@ -43,7 +43,7 @@ static int	keypress(int keycode, t_game *game)
 	else if (!game->endgame)
 	{
 		game_events(keycode, game);
-		ft_printf("Moves: %d\n", game->moves);
+		ft_printf("Movimentos: \033[0;34m%d\033[0m\n", game->moves);
 	}
 	return (0);
 }

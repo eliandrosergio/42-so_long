@@ -27,6 +27,7 @@ void	free_map(char **map)
 
 int	exit_game(t_game *game)
 {
+	ft_printf_colored("\033[0;31m", "Jogo Terminado!\n");
 	free_map(game->map);
 	mlx_destroy_image(game->mlx, game->img_backg);
 	mlx_destroy_image(game->mlx, game->img_wall);

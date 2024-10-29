@@ -66,7 +66,7 @@ int	check_clbs_access(char **map, int i, int j, t_game *game)
 		return (0);
 	}
 	else if (game->check == 1)
-	{	
+	{
 		free_map(temp_map);
 		return (1);
 	}

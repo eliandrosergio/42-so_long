@@ -27,11 +27,12 @@ static void	player_draw(t_game *game, void *image, int x, int y)
 
 static void	exit_draw(t_game *game, int x, int y)
 {
-	if (game->n_colect == 0)
+	if (game->n_colect == 0 && game->exit_alter == 0)
 	{
 		mlx_destroy_image(game->mlx, game->img_exit);
 		game->img_exit = mlx_xpm_file_to_image
 			(game->mlx, "assets/images/E2.xpm", &game->img_w, &game->img_h);
+		game->exit_alter = 1;
 	}
 	img_draw(game, game->img_exit, x, y);
 }

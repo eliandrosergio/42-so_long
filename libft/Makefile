@@ -12,7 +12,6 @@
 
 NAME = libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
 SRC =	ft_strdup.c \
 		ft_strjoin.c \
 		ft_substr.c \

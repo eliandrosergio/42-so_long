@@ -1,5 +1,17 @@
+NAME			=	so_long
+NAME_BONUS		=	so_long_bonus
+
+CC				=	gcc
+RM				=	rm -f
+
+CFLAGS			=	-Wall -Wextra -Werror
+MLXFLAGS 		= 	-lm -lXext -lX11
+
 LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
+
+MINILIBX_PATH	=	./minilibx-linux
+MINILIBX		=	$(MINILIBX_PATH)/libmlx_Linux.a
 
 SOURCES_FILES	=	main.c \
 					draw.c \
@@ -12,40 +24,61 @@ SOURCES_FILES	=	main.c \
 					gameplay.c \
 					exit_game.c
 
+SOURCES_BONUS	=	main_bonus.c \
+					draw_bonus.c \
+					init_bonus.c \
+					read_map_bonus.c \
+					map_fts1_bonus.c \
+					map_fts2_bonus.c \
+					map_validate_bonus.c \
+					player_update_bonus.c \
+					gameplay_bonus.c \
+					exit_game_bonus.c \
+					moves_bonus.c \
+					animation_bonus.c
+
 SOURCES_DIR		=	sources
+BONUS_DIR		=	sources_bonus
+
 HEADER			=	$(SOURCES_DIR)/so_long.h
+HEADER_BONUS	=	$(BONUS_DIR)/so_long_bonus.h
 
 SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SOURCES_FILES))
+BONUS_FILES		=	$(addprefix $(BONUS_DIR)/, $(SOURCES_BONUS))
+
 OBJECTS			= 	$(SOURCES:.c=.o)
-
-NAME			=	so_long
-CC				=	gcc
-RM				=	rm -f
-
-CFLAGS			=	-Wall -Wextra -Werror
-MLX_FLAGS 		= 	-L./minilibx-linux -lmlx_Linux -lm -lXext -lX11
+OBJECTS_BONUS	= 	$(BONUS_FILES:.c=.o)
 
 .c.o:
 				$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all:			$(NAME)
 
-$(NAME):		$(LIBFT) $(OBJECTS) $(HEADER)
-			make -C minilibx-linux
-				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+bonus:			$(NAME_BONUS)
+
+$(NAME):		$(LIBFT) $(MINILIBX) $(OBJECTS) $(HEADER)
+				$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME)
+
+$(NAME_BONUS):	$(LIBFT) $(MINILIBX) $(OBJECTS_BONUS) $(HEADER_BONUS)
+				$(CC) $(CFLAGS) $(OBJECTS_BONUS) $(LIBFT) $(MINILIBX) $(MLXFLAGS) -o $(NAME_BONUS)
 
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_PATH)
 
+$(MINILIBX):
+				$(MAKE) -C $(MINILIBX_PATH)
+
 clean:
-				make clean -C minilibx-linux
+				$(MAKE) -C $(MINILIBX_PATH) clean
 				$(MAKE) -C $(LIBFT_PATH) clean
+				$(RM) $(OBJECTS_BONUS)
 				$(RM) $(OBJECTS)
 
 fclean:			clean
 				$(MAKE) -C $(LIBFT_PATH) fclean
+				$(RM) $(NAME_BONUS)
 				$(RM) $(NAME)
 
 re:				fclean all
 
-.PHONY:			all clean fclean re libft
+.PHONY:			all bonus clean fclean re libft minilibx

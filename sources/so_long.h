@@ -15,7 +15,6 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
-# include <stdio.h>
 # include <fcntl.h>
 
 typedef struct s_game
@@ -41,6 +40,7 @@ typedef struct s_game
 	int		endgame;
 	int		check;
 	int		clb_access;
+	int		exit_alter;
 }	t_game;
 
 # define KEY_ESC 65307
@@ -72,5 +72,6 @@ void	player_a(t_game *game);
 int		exit_game(t_game *game);
 void	free_map(char **map);
 void	fill_c(char **map, int y, int x, t_game *game);
+void	ft_printf_colored(const char *color, const char *format);
 
 #endif

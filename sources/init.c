@@ -39,11 +39,13 @@ static void	size_window_init(t_game *game)
 
 void	game_init(t_game *game)
 {
+	ft_printf_colored("\033[0;32m", "Jogo Iniciado!\n");
 	game->mlx = mlx_init();
 	size_window_init(game);
 	game->win = mlx_new_window(game->mlx, game->map_w, game->map_h, "so_long");
 	game->moves = 0;
 	game->endgame = 0;
+	game->exit_alter = 0;
 	img_init(game);
 	map_draw(game);
 }

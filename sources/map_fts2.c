@@ -60,3 +60,10 @@ void	fill_c(char **map, int y, int x, t_game *game)
 	fill_c(map, y - 1, x, game);
 	fill_c(map, y + 1, x, game);
 }
+
+void	ft_printf_colored(const char *color, const char *format)
+{
+	ft_printf(color);
+	ft_printf(format);
+	ft_printf("\033[0m");
+}
