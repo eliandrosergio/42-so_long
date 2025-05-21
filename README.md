@@ -1,4 +1,4 @@
-# so_long
+# 42-so_long
 
 O projeto *so_long* da Escola 42 é um jogo simples desenvolvido usando a biblioteca gráfica *MinilibX*. O objetivo é criar um jogo no qual o jogador deve coletar itens e alcançar um objetivo final, utilizando movimentação no mapa e lógica de interação com objetos.
 
